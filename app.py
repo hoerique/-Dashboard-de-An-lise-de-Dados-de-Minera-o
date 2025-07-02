@@ -24,8 +24,9 @@ st.markdown("---")
 def carregar_dados():
     """Carrega e trata os dados do CSV"""
     try:
-        # Carregar dados
-        df = pd.read_csv('mineração.csv')
+        # Carregar dados do link bruto do GitHub
+        url = 'https://raw.githubusercontent.com/hoerique/-Dashboard-de-An-lise-de-Dados-de-Minera-o/main/minera%C3%A7%C3%A3o.csv'
+        df = pd.read_csv(url)
         
         # Converter colunas de data
         df['Data de Produção'] = pd.to_datetime(df['Data de Produção'])
