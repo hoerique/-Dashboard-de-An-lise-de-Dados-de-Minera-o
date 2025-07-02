@@ -27,6 +27,9 @@ def carregar_dados():
         # Carregar dados do link bruto do GitHub
         url = 'https://raw.githubusercontent.com/hoerique/-Dashboard-de-An-lise-de-Dados-de-Minera-o/main/minera%C3%A7%C3%A3o.csv'
         df = pd.read_csv(url)
+        if df.empty:
+            st.error("O arquivo CSV foi carregado, mas está vazio. Verifique o conteúdo do arquivo no GitHub.")
+            return None
         
         # Converter colunas de data
         df['Data de Produção'] = pd.to_datetime(df['Data de Produção'])
@@ -67,7 +70,7 @@ def carregar_dados():
         return df
     
     except Exception as e:
-        st.error(f"Erro ao carregar dados: {e}")
+        st.error(f"Erro ao carregar dados do GitHub: {e}\nVerifique se o arquivo está disponível e acessível.")
         return None
 
 # Carregar dados
